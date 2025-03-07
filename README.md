@@ -1,4 +1,4 @@
-# Group "GROUP NAME"
+# Group "Web Appost"
 
 ## Members
 - s339225 NIOSI ALICE
