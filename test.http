@@ -1,0 +1,8 @@
+//POST http://localhost:3000/api/celebrities
+
+GET http://localhost:3000/api/celebrities/id/1
+
+
+GET http://localhost:3000/api/celebrities
+
+GET http://localhost:3000/api/celebrities/hairColor/Blonde

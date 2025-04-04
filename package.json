@@ -1,0 +1,27 @@
+{
+  "name": "labs_webapp",
+  "version": "1.0.0",
+  "description": "- s339225 NIOSI ALICE\r - s339224 ALTIERI CARMEN SONIA\r - s338945 BARBARO ALFREDO",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon express.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/polito-WA1-2025-exam/labs-web-appost.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/polito-WA1-2025-exam/labs-web-appost/issues"
+  },
+  "homepage": "https://github.com/polito-WA1-2025-exam/labs-web-appost#readme",
+  "dependencies": {
+    "express": "^5.1.0",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}

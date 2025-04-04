@@ -16,19 +16,29 @@ export function getAllCelebrities() {
   });
 }
 
-
-
-
 //ora uso delle condizioni specifiche
 // Funzione per ottenere i dati delle celebrità in base a condizioni specifiche
 export function getAllSpecificCelebrities(HairColor) {
   return new Promise((resolve, reject) => {
     const sql = "SELECT * FROM CELEBRITIES WHERE HairColor = ?";
-    db.all(sql, [HairColor],(err, rows) => {
+    db.all(sql, [HairColor], (err, rows) => {
       if (err) {
         reject(err);
       } else {
         resolve(rows);
+      }
+    });
+  });
+}
+
+export function getIDCelebrity(ID_Cel) {
+  return new Promise((resolve, reject) => {
+    const sql = "SELECT * FROM CELEBRITIES WHERE ID_Cel = ?";
+    db.get(sql, [ID_Cel], (err, row) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(row);
       }
     });
   });
