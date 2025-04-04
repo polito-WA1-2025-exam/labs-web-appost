@@ -1,9 +1,9 @@
 import sqlite from "sqlite3";
-const db = new sqlite.Database("myDatabase.db", (err) => {
+export const db = new sqlite.Database("myDatabase.db", (err) => {
   if (err) throw err;
 });
 
-function getAllCelebrities() {
+export function getAllCelebrities() {
   return new Promise((resolve, reject) => {
     const sql = "SELECT * FROM CELEBRITIES";
     db.all(sql, (err, rows) => {
@@ -16,20 +16,15 @@ function getAllCelebrities() {
   });
 }
 
-async function main() {
-  const catalog = await getAllCelebrities();
-  console.log(catalog);
-}
 
-main();
 
-/*
+
 //ora uso delle condizioni specifiche
 // Funzione per ottenere i dati delle celebrità in base a condizioni specifiche
-function getAllBlondeCelebrities() {
+export function getAllSpecificCelebrities(HairColor) {
   return new Promise((resolve, reject) => {
-    const sql = "SELECT * FROM CELEBRITIES WHERE HairColor = 'blonde'";
-    db.all(sql, (err, rows) => {
+    const sql = "SELECT * FROM CELEBRITIES WHERE HairColor = ?";
+    db.all(sql, [HairColor],(err, rows) => {
       if (err) {
         reject(err);
       } else {
@@ -39,15 +34,7 @@ function getAllBlondeCelebrities() {
   });
 }
 
-getAllBlondeCelebrities()
-  .then((blondeCelebrities) => {
-    let blondeCelebrityArray = blondeCelebrities;
-    console.log(blondeCelebrityArray);
-  })
-  .catch((err) => {
-    console.error("Errore nel recupero delle celebrità bionde:", err);
-  });
-
+/*
 function addCelebrity(celebrity) {
   return new Promise((resolve, reject) => {
     const sql = `INSERT INTO CELEBRITIES (photo, profession, hairColor, glasses, skinColor, gender, hat, ageRange, mustache, eyeColor) 
