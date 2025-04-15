@@ -1,6 +1,9 @@
 import sqlite from "sqlite3";
-import { getAllCelebrities, getAllSpecificCelebrities, db} from "./functions.mjs"; // Importa la funzione getAllCelebrities dal file functions.mjs
-
+import {
+  getAllCelebrities,
+  getAllSpecificCelebrities,
+  db,
+} from "./functions.mjs"; // Importa la funzione getAllCelebrities dal file functions.mjs
 
 function Celebrity(
   photo,
@@ -12,7 +15,7 @@ function Celebrity(
   hat,
   ageRange,
   mustache,
-  eyeColor, 
+  eyeColor,
   name
 ) {
   (this.photo = photo),
@@ -25,8 +28,7 @@ function Celebrity(
     (this.ageRange = ageRange),
     (this.mustache = mustache),
     (this.eyeColor = eyeColor);
-    (this.name = name);
-
+  this.name = name;
 }
 
 function match(difficulty) {
@@ -71,15 +73,31 @@ function celebritiesCatalog() {
   };
   this.addCelebrity = (celebrity) => {
     return new Promise((resolve, reject) => {
-      const sql = "INSERT INTO CELEBRITIES(Photo, Profession, HairColor, Glasses, SkinColor, Gender, Hat, AgeRange, Mustache, EyeColor, Name) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-      db.run(sql, [celebrity.photo, celebrity.profession, celebrity.hairColor, celebrity.glasses, celebrity.skinColor, celebrity.gender, celebrity.hat, celebrity.ageRange, celebrity.mustache, celebrity.eyeColor, celebrity.name, this.id], function (err) {
-        if (err)
-          reject(err);
-        else
-          resolve(this.lastID);
-      });
+      const sql =
+        "INSERT INTO CELEBRITIES(Photo, Profession, HairColor, Glasses, SkinColor, Gender, Hat, AgeRange, Mustache, EyeColor, Name) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+      db.run(
+        sql,
+        [
+          celebrity.photo,
+          celebrity.profession,
+          celebrity.hairColor,
+          celebrity.glasses,
+          celebrity.skinColor,
+          celebrity.gender,
+          celebrity.hat,
+          celebrity.ageRange,
+          celebrity.mustache,
+          celebrity.eyeColor,
+          celebrity.name,
+          this.id,
+        ],
+        function (err) {
+          if (err) reject(err);
+          else resolve(this.lastID);
+        }
+      );
     });
-  }
+  };
   this.deleteClebrities = (id) => {
     return new Promise((resolve, reject) => {
       const sql = `DELETE FROM CELEBRITIES WHERE ID_Cel = ?`;
@@ -88,7 +106,7 @@ function celebritiesCatalog() {
         else resolve("Celebrity deleted successfully");
       });
     });
-  }
+  };
   this.updateCelebritiesProperty = (property, oldValue, newValue) => {
     return new Promise((resolve, reject) => {
       const sql = `UPDATE CELEBRITIES SET ${property} = ? WHERE ${property} = ?`;
@@ -102,7 +120,6 @@ function celebritiesCatalog() {
     });
   };
 }
-
 
 function difficulty(type) {
   this.type = type; //type = easy, medium, hard
@@ -127,7 +144,6 @@ async function main() {
   const r2 = await C.deleteClebrities(38);
   const blondeCelebrities = await getAllSpecificCelebrities("Blonde");
   //console.log(blondeCelebrities);
-
 }
 
 main();

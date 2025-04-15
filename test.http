@@ -1,8 +1,35 @@
 //POST http://localhost:3000/api/celebrities
 
-GET http://localhost:3000/api/celebrities/id/1
+//GET http://localhost:3000/api/celebrities/id/1
 
 
-GET http://localhost:3000/api/celebrities
+//GET http://localhost:3000/api/celebrities
 
-GET http://localhost:3000/api/celebrities/hairColor/Blonde
+//GET http://localhost:3000/api/celebrities/hairColor/Blonde 
+
+//PUT http://localhost:3000/api/celebrities/id/37/property/photo
+//Content-Type: application/json
+
+//{
+    //"newValue": "fffffff"
+//}
+
+
+//POST http://localhost:3000/api/celebrities
+//Content-Type: application/json
+
+//{
+ // "photo": "https://example.com/photo.jpg",
+ // "profession": "Actor",
+ // "hairColor": "Blonde",
+ // "glasses": true,
+ // "skinColor": "Fair",
+ // "gender": "male",
+ // "hat": true,
+ // "ageRange": "18-25",
+//  "mustache": true,
+//  "eyeColor": "Blue",
+ // "name": "John Doe"
+//}
+
+DELETE http://localhost:3000/api/celebrities/id/37

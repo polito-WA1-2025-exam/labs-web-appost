@@ -44,11 +44,10 @@ export function getIDCelebrity(ID_Cel) {
   });
 }
 
-/*
-function addCelebrity(celebrity) {
+export function addCelebrity(celebrity) {
   return new Promise((resolve, reject) => {
-    const sql = `INSERT INTO CELEBRITIES (photo, profession, hairColor, glasses, skinColor, gender, hat, ageRange, mustache, eyeColor) 
-                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+    const sql = `INSERT INTO CELEBRITIES (photo, profession, hairColor, glasses, skinColor, gender, hat, ageRange, mustache, eyeColor, name) 
+                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
     const values = [
       celebrity.photo,
@@ -61,6 +60,7 @@ function addCelebrity(celebrity) {
       celebrity.ageRange,
       celebrity.mustache,
       celebrity.eyeColor,
+      celebrity.name,
     ];
 
     db.run(sql, values, function (err) {
@@ -70,6 +70,33 @@ function addCelebrity(celebrity) {
   });
 }
 
+export function updateCelebritiesProperty(id, property, newValue) {
+  return new Promise((resolve, reject) => {
+    // Costruisci la query per aggiornare il campo specificato
+    const sql = `UPDATE CELEBRITIES SET ${property} = ? WHERE id_Cel = ?`;
+
+    // Esegui la query con i parametri
+    db.run(sql, [newValue, id], function (err) {
+      if (err) {
+        reject(`Failed to update ${property}: ${err.message}`);
+      } else {
+        resolve(`Successfully updated ${this.changes} record(s)`);
+      }
+    });
+  });
+}
+
+export function deleteCelebrity(id) {
+  return new Promise((resolve, reject) => {
+    const sql = `DELETE FROM CELEBRITIES WHERE ID_Cel = ?`;
+    db.run(sql, [id], function (err) {
+      if (err) reject(err);
+      else resolve("Celebrity deleted successfully");
+    });
+  });
+}
+
+/*
 addCelebrity({
   photo: "photo_url2",
   profession: "rockstar",
